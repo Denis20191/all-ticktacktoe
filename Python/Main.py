@@ -1,0 +1,3 @@
+import PromptTickTackToe
+
+PromptTickTackToe.startGame()
