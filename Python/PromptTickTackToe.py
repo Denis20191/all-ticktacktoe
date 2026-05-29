@@ -4,6 +4,7 @@ horizontalSeparator = "-------"
 verticalSeparator = "|"
 board = np.array([[0, 0, 0], [0, 0, 0], [0, 0, 0]])
 move = 1
+lastWinner = "NONE"
 
 def customizeSeparators(horizontal: str, vertical: str):
     """Initialize the game with custom separators"""
@@ -16,7 +17,7 @@ def startGame():
     Initialize a game of TickTackToe
     Uses input() for user input.
     """
-    global move
+    global move, lastWinner
     resetBoard()
 
     win = 0
@@ -55,8 +56,10 @@ def startGame():
 
     if win != 0:
         print("WINNER: Player " + ("X" if win == 1 else "O"))
+        lastWinner = "X" if win == 1 else "O"
     else:
         print("GAME OVER. DRAW")
+        lastWinner = "DRAW"
 
 def printBoard():
     """

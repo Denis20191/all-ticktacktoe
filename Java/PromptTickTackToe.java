@@ -16,6 +16,12 @@ public class PromptTickTackToe {
 	 * Current move number. Starts from 1. Max 9
 	 */
 	private int move = 1;
+
+	/**
+	 * Last player that won. "X", "O" or "DRAW".
+	 * Initially "NONE"
+	 */
+	private String lastWinner;
 	
 	/**
 	 * Initialize the game with default separators
@@ -23,6 +29,7 @@ public class PromptTickTackToe {
 	public PromptTickTackToe() {
 		HORIZONTAL_SEPARATOR  = "-------";
 		VERTICAL_SEPARATOR = "|";
+		lastWinner = "NONE";
 	}
 	
 	/**
@@ -31,6 +38,7 @@ public class PromptTickTackToe {
 	public PromptTickTackToe(String horizontalSeparator, String verticalSeparator) {
 		HORIZONTAL_SEPARATOR  = horizontalSeparator;
 		VERTICAL_SEPARATOR = verticalSeparator;
+		lastWinner = "NONE";
 	}
 	
 	/**
@@ -46,7 +54,7 @@ public class PromptTickTackToe {
 			
 			printBoard();
 			
-			int x = 0, y = 0;
+			int x, y;
 			while(true) {
 				try {
 					System.out.print("Input x coordinate: ");
@@ -83,9 +91,17 @@ public class PromptTickTackToe {
 		
 		printBoard();
 		
-		if(win != 0) System.out.println("WINNER: Player " + (win == 1 ? 'X' : 'O'));
-		else System.out.println("GAME OVER. DRAW");
+		if(win != 0) {
+			System.out.println("WINNER: Player " + (win == 1 ? 'X' : 'O'));
+			lastWinner = (win == 1 ? "X" : "O");
+		}
+		else {
+			System.out.println("GAME OVER. DRAW");
+			lastWinner = "DRAW";
+		}
 	}
+
+	public String getLastWinner() { return lastWinner; }
 	
 	/**
 	 * Prints the board.
@@ -162,10 +178,9 @@ public class PromptTickTackToe {
 	 */
 	private char getSymbol(int x, int y) {
 		switch(board[x][y]) {
-			case 0: return ' ';
 			case 1: return 'X';
 			case 2: return 'O';
+			default: return ' ';
 		}
-		return 'L';
 	}
 }

@@ -1,2 +1,5 @@
 # Ignore Java class files
 *.class
+
+# Ignore Python bytecode files
+*.pyc
