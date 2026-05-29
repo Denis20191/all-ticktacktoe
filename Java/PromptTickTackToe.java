@@ -83,7 +83,7 @@ public class PromptTickTackToe {
 		
 		printBoard();
 		
-		if(win != 0) System.out.println("WINNER: Player " + (move%2==0 ? 'O' : 'X'));
+		if(win != 0) System.out.println("WINNER: Player " + (win == 1 ? 'X' : 'O'));
 		else System.out.println("GAME OVER. DRAW");
 	}
 	
@@ -108,7 +108,7 @@ public class PromptTickTackToe {
 	 * If the cell is empty, assign player value to the cell
 	 * @param x X coordinate
 	 * @param y Y coordinate
-	 * @param p Player value (1 for X, 2 for Y)
+	 * @param p Player value (1 for X, 2 for O)
 	 * @return If the move was succcessful or not
 	 */
 	private boolean tryMove(int x, int y, int p) {
