@@ -41,10 +41,7 @@ public class PromptTickTackToe {
 		resetBoard();
 		int win = 0;
 		while(move <= 9) {
-			win = checkWin();
-			if(win != 0) break;
-			
-			System.out.println("=== Move " + move + " ===");
+			System.out.println("=== MOVE " + move + " ===");
 			System.out.println("Player " + (move % 2 == 0 ? "O" : "X"));
 			
 			printBoard();
@@ -77,13 +74,16 @@ public class PromptTickTackToe {
 					System.out.println("Invalid input. Try again");
 				}
 			}
+
+			win = checkWin();
+			if(win != 0) break;
 			
 			move++;
 		}
 		
 		printBoard();
 		
-		if(win != 0) System.out.println("Winner: Player " + (move%2==0 ? 'X' : 'O'));
+		if(win != 0) System.out.println("WINNER: Player " + (move%2==0 ? 'O' : 'X'));
 		else System.out.println("GAME OVER. DRAW");
 	}
 	
