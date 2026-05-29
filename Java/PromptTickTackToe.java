@@ -5,6 +5,19 @@ public class PromptTickTackToe {
 	public final String VERTICAL_SEPARATOR;
 	
 	/**
+	 * 3x3 matrix. Every cell is either 0, 1 or 2.
+	 * 0: Empty cell
+	 * 1: Player X
+	 * 2: Player O
+	 */
+	private int[][] board = new int[3][3];
+	
+	/**
+	 * Current move number. Starts from 1. Max 9
+	 */
+	private int move = 1;
+	
+	/**
 	 * Initialize the game with default separators
 	 */
 	public PromptTickTackToe() {
@@ -19,18 +32,6 @@ public class PromptTickTackToe {
 		HORIZONTAL_SEPARATOR  = horizontalSeparator;
 		VERTICAL_SEPARATOR = verticalSeparator;
 	}
-	
-	/**
-	 * 3x3 matrix. Every cell is either 0, 1 or 2.
-	 * 0: Empty cell
-	 * 1: Player X
-	 * 2: Player O
-	 */
-	private int[][] board = new int[3][3];
-	/**
-	 * Current move number. Starts from 1. Max 9
-	 */
-	private int move = 1;
 	
 	/**
 	 * Initialize a game of TickTackToe
@@ -89,7 +90,7 @@ public class PromptTickTackToe {
 	/**
 	 * Prints the board.
 	 * On the top and bottom of cells there's HORIZONTAL_SEPARATOR
-	 * Between dashes there's VERTICAL_SEPARATOR;
+	 * Between cells there's VERTICAL_SEPARATOR;
 	 */
 	private void printBoard() {
 		for(int i = 0; i < board.length; i++) {
