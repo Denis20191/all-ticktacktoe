@@ -1,10 +1,42 @@
 import java.util.Scanner;
 
 public class PromptTickTackToe {
-	private static int[][] board = new int[3][3];
-	private static int move = 1;
+	public final String HORIZONTAL_SEPARATOR;
+	public final String VERTICAL_SEPARATOR;
 	
-	public static void startGame(Scanner in) {
+	/**
+	 * Initialize the game with default separators
+	 */
+	public PromptTickTackToe() {
+		HORIZONTAL_SEPARATOR  = "-------";
+		VERTICAL_SEPARATOR = "|";
+	}
+	
+	/**
+	 * Initialize the game with custom separators
+	 */
+	public PromptTickTackToe(String horizontalSeparator, String verticalSeparator) {
+		HORIZONTAL_SEPARATOR  = horizontalSeparator;
+		VERTICAL_SEPARATOR = verticalSeparator;
+	}
+	
+	/**
+	 * 3x3 matrix. Every cell is either 0, 1 or 2.
+	 * 0: Empty cell
+	 * 1: Player X
+	 * 2: Player O
+	 */
+	private int[][] board = new int[3][3];
+	/**
+	 * Current move number. Starts from 1. Max 9
+	 */
+	private int move = 1;
+	
+	/**
+	 * Initialize a game of TickTackToe
+	 * @param in Scanner that the game will use. Reccomended: System.in
+	 */
+	public void startGame(Scanner in) {
 		resetBoard();
 		int win = 0;
 		while(move <= 9) {
@@ -54,26 +86,42 @@ public class PromptTickTackToe {
 		else System.out.println("GAME OVER. DRAW");
 	}
 	
-	private static void printBoard() {
+	/**
+	 * Prints the board.
+	 * On the top and bottom of cells there's HORIZONTAL_SEPARATOR
+	 * Between dashes there's VERTICAL_SEPARATOR;
+	 */
+	private void printBoard() {
 		for(int i = 0; i < board.length; i++) {
-			System.out.println("-------");
+			System.out.println(HORIZONTAL_SEPARATOR);
 			for(int j = 0; j < board[i].length; j++) {
-				System.out.print("|" + getSymbol(i,j));
+				System.out.print(VERTICAL_SEPARATOR + getSymbol(i,j));
 			}
-			System.out.println("|");
+			System.out.println(VERTICAL_SEPARATOR);
 		}
-		System.out.println("-------");
+		System.out.println(HORIZONTAL_SEPARATOR);
 	}
 	
-	private static boolean tryMove(int i, int j, int p) {
-		if(board[i][j] != 0)
+	/**
+	 * Attempt to make a move.
+	 * If the cell is empty, assign player value to the cell
+	 * @param x X coordinate
+	 * @param y Y coordinate
+	 * @param p Player value (1 for X, 2 for Y)
+	 * @return If the move was succcessful or not
+	 */
+	private boolean tryMove(int x, int y, int p) {
+		if(board[x][y] != 0)
 			return false;
 			
-		board[i][j] = p;
+		board[x][y] = p;
 		return true;
 	}
 	
-	private static void resetBoard() {
+	/**
+	 * Resets the board (all cells 0) and the move counter (to 1)
+	 */
+	private void resetBoard() {
 		for(int i = 0; i < board.length; i++) {
 			for(int j = 0; j < board[i].length; j++) {
 				board[i][j] = 0;
@@ -82,7 +130,10 @@ public class PromptTickTackToe {
 		move = 1;
 	}
 	
-	private static int checkWin() {
+	/**
+	 * Checks every cross, collumn and row combination for possible win
+	 */
+	private int checkWin() {
 		if(board[0][0] != 0 && board[0][0] == board[1][1] && board[1][1] == board[2][2])
 			return board[0][0];
 			
@@ -102,8 +153,14 @@ public class PromptTickTackToe {
 		return 0;
 	}
 	
-	private static char getSymbol(int i, int j) {
-		switch(board[i][j]) {
+	/**
+	 * Helper method
+	 * @param x X coordinate on board
+	 * @param y Y coordinate on board
+	 * @return Player symbol at coordinates X,Y
+	 */
+	private char getSymbol(int x, int y) {
+		switch(board[x][y]) {
 			case 0: return ' ';
 			case 1: return 'X';
 			case 2: return 'O';
