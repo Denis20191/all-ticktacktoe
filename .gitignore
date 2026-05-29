@@ -11,3 +11,4 @@
 CPP/*.win
 CPP/*.dev
 CPP/*.layout
+CPP/*.o
