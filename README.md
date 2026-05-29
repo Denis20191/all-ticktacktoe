@@ -7,3 +7,6 @@ Simple versions of TickTackToe in as many programming languages as possible.
 
 ## In development:
 - Java (Graphic Interface)
+- C++ (Text Based)
+- C# (Text Based)
+- HTML + JavaScript (Graphic Interface)
