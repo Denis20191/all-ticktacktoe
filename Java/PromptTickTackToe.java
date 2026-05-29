@@ -1,16 +1,10 @@
 import java.util.Scanner;
-import java.util.Random;
 
 public class PromptTickTackToe {
-	public static int[][] board = new int[3][3];
-	static int move = 1;
+	private static int[][] board = new int[3][3];
+	private static int move = 1;
 	
-	public static void main(String[] args) {
-		Scanner in = new Scanner(System.in);
-		tickTackToe(in);
-	}
-	
-	public static void tickTackToe(Scanner in) {
+	public static void startGame(Scanner in) {
 		resetBoard();
 		int win = 0;
 		while(move <= 9) {
